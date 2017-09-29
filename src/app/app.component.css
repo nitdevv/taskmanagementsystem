@@ -1,1 +1,23 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+.jumbotron{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 8%;
+}
+.login-bottom{
+      text-align: center;
+}
+.login{
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+.resgistration{
+
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+  

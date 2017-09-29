@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { RegisterService } from '../service/register.service'
+import { User } from '../user'
 @Component({
-  moduleId: module.id,
   templateUrl: 'register.component.html',
   styleUrls: ['../app.component.css'],
 
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   form: FormGroup;
+  registeruser = {};
+  @Input() user: User;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private RegisterService: RegisterService
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -20,6 +27,7 @@ export class RegisterComponent {
       password: ['', Validators.required],
       confirmPass: ['', Validators.required]
     });
+
   }
   isFieldValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched;
@@ -32,14 +40,14 @@ export class RegisterComponent {
     };
   }
 
-  onSubmit() {
-    console.log(this.form);
-    if (this.form.valid) {
-      console.log('form submitted');
-    } else {
-      this.validateAllFormFields(this.form);
-    }
-  }
+  // onSubmit() {
+  //   console.log(this.form);
+  //   if (this.form.valid) {
+  //     console.log('form submitted');
+  //   } else {
+  //     this.validateAllFormFields(this.form);
+  //   }
+  // }
 
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
@@ -55,6 +63,11 @@ export class RegisterComponent {
 
   reset() {
     this.form.reset();
+  }
+
+  onSubmit() {
+    this.RegisterService.signup(this.registeruser).subscribe(data => console.log(this.registeruser = data));
+
   }
 
 }

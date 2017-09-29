@@ -8,22 +8,29 @@ import { LoginComponent } from '../app/login/login.component'
 import { RegisterComponent } from './register/register.component';
 import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 import { routing } from './app.routing';
+import { RegisterService } from '../app/service/register.service'
+import { HttpModule } from '@angular/http';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    FieldErrorDisplayComponent
+    FieldErrorDisplayComponent,
+
   ],
   imports: [
     BrowserModule,
     routing,
     AlertModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule,
+
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
