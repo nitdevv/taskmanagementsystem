@@ -10,8 +10,7 @@ import { FieldErrorDisplayComponent } from './field-error-display/field-error-di
 import { routing } from './app.routing';
 import { RegisterService } from '../app/service/register.service'
 import { HttpModule } from '@angular/http';
-
-
+import { LoginService } from '../app/service/login.service'
 
 @NgModule({
   declarations: [
@@ -30,7 +29,10 @@ import { HttpModule } from '@angular/http';
     HttpModule,
 
   ],
-  providers: [RegisterService],
+  providers: [
+    RegisterService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

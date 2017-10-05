@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RegisterService } from '../service/register.service'
@@ -12,23 +12,29 @@ import { User } from '../user'
 
 export class RegisterComponent implements OnInit {
   form: FormGroup;
-  registeruser = {};
-  @Input() user: User;
+  registeruser: any = {};
+  user: any = {};
+  error: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private RegisterService: RegisterService
+    private RegisterService: RegisterService,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      name: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      confirmPass: ['', Validators.required]
-    });
+      con_password: ['', Validators.required]
 
+    });
+    // if (password != con_password) {
+    //   window.alert("Password and confirm password don't match. Please input same password in these two fields.");
+    // }
   }
+
   isFieldValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched;
   }
@@ -39,16 +45,6 @@ export class RegisterComponent implements OnInit {
       'has-feedback': this.isFieldValid(field)
     };
   }
-
-  // onSubmit() {
-  //   console.log(this.form);
-  //   if (this.form.valid) {
-  //     console.log('form submitted');
-  //   } else {
-  //     this.validateAllFormFields(this.form);
-  //   }
-  // }
-
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       console.log(field);
@@ -59,15 +55,35 @@ export class RegisterComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     });
-  }
 
+  }
   reset() {
     this.form.reset();
   }
-
   onSubmit() {
-    this.RegisterService.signup(this.registeruser).subscribe(data => console.log(this.registeruser = data));
+    if (this.form.valid) {
+      this.RegisterService.registerUser(this.form.value)
+        .subscribe(data => {
+          if (data.error == 1) {
+            this.error = data.message;
+            alert(this.error);
 
+            console.log("this.error", this.error)
+          } else {
+            console.log("scuccess")
+            alert('Registration SuccessFull');
+            this.router.navigate(['/login']);
+          }
+        },
+        error => {
+          if (error.status == 400) {
+            alert("user already exit")
+          }
+          this.reset();
+        });
+    }
+    else {
+      this.validateAllFormFields(this.form);
+    }
   }
-
 }
