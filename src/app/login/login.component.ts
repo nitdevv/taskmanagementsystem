@@ -61,10 +61,12 @@ export class LoginComponent implements OnInit {
       this.LoginService.login(this.form.get('email').value, this.form.get('password').value)
         .subscribe(
         data => {
-          if (data.error == 0) {
+          if (data.error == 1) {
             alert("Invalid email ,password please try again");
           } else {
             alert('Login SuccessFull');
+            this.router.navigate(['/home']);
+
           }
           console.log(data)
         },

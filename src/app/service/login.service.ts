@@ -18,13 +18,12 @@ export class LoginService {
       .map((response: Response) => {
         let user = response.json();
         if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user))
+          localStorage.setItem('access_token', JSON.stringify(user.token))
         }
-        console.log(response);
         return user;
       });
   }
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('access_token');
   }
 }

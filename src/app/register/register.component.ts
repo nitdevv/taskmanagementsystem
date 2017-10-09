@@ -30,9 +30,6 @@ export class RegisterComponent implements OnInit {
       con_password: ['', Validators.required]
 
     });
-    // if (password != con_password) {
-    //   window.alert("Password and confirm password don't match. Please input same password in these two fields.");
-    // }
   }
 
   isFieldValid(field: string) {
