@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { FormGroup, FormControl, Validators, FormBuilder, } from '@angular/forms';
+import { LoginService } from '../service/login.service'
+
 
 @Component({
   selector: 'app-login',
@@ -11,14 +14,22 @@ import { FormGroup, FormControl, Validators, FormBuilder, } from '@angular/forms
 
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  user: any = {};
+  error: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private LoginService: LoginService,
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      name: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required],
+      email: [null, Validators.required],
     });
+
   }
   isFieldValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched;
@@ -30,16 +41,6 @@ export class LoginComponent implements OnInit {
       'has-feedback': this.isFieldValid(field)
     };
   }
-
-  onSubmit() {
-    console.log(this.form);
-    if (this.form.valid) {
-      console.log('form submitted');
-    } else {
-      this.validateAllFormFields(this.form);
-    }
-  }
-
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       console.log(field);
@@ -54,5 +55,27 @@ export class LoginComponent implements OnInit {
 
   reset() {
     this.form.reset();
+  }
+  onSubmit() {
+    if (this.form.valid) {
+      this.LoginService.login(this.form.get('email').value, this.form.get('password').value)
+        .subscribe(
+        data => {
+          if (data.error == 1) {
+            alert("Invalid email ,password please try again");
+          } else {
+            alert('Login SuccessFull');
+            this.router.navigate(['/home']);
+
+          }
+          console.log(data)
+        },
+        error => {
+
+        });
+    }
+    else {
+      this.validateAllFormFields(this.form);
+    }
   }
 }
