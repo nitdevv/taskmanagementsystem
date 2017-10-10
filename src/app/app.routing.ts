@@ -15,7 +15,6 @@ const appRoutes: Routes = [
     children: [
       { path: 'create', component: TaskComponent },
       { path: 'view', component: ViewComponent },
-      // { path: 'take', component: TakeComponent }
     ]
   }
 ];

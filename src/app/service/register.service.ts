@@ -34,6 +34,7 @@ export class RegisterService {
     headers.append('Content-Type', 'application/json');
     return this._http.get('http://5.9.144.226:6001/view_all_task', { headers: headers })
       .map((res: any) => {
+        console.log("yoooo")
         console.log(res)
         return res.json();
       })

@@ -20,7 +20,6 @@ export class TaskComponent implements OnInit {
   title: string;
 
   constructor(private RegisterService: RegisterService,
-    // private _viewService: ViewService,
     private _formBuilder: FormBuilder,
     private router: Router
 
@@ -69,9 +68,6 @@ export class TaskComponent implements OnInit {
       }
     })
   }
-  // view() {
-  //   this._viewService.view();
-  //   console.log("click")
-  // }
+
 
 }
