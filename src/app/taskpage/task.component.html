@@ -1,16 +1,17 @@
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+<!-- <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
   <h3 class="w3-bar-item">Menu</h3>
   <a class="w3-bar-item w3-button">Create</a>
-  <a class="w3-bar-item w3-button">View all task</a>
-</div>
-<div style="margin-left:25%">
+  <a class="w3-bar-item w3-button" (click)=" view()">View all task</a>
+</div> -->
+<!-- <div style="margin-left:25%">
   <div class="w3-container w3-teal">
     <h1>Welcome user</h1>
   </div>
-</div>
+</div> -->
 <div class="form-style-6">
   <h1>Create task</h1>
-  <form class="well" (ngSubmit)="createTask()" [formGroup]="CreateTaskForm">
+
+  <form class="well" (ngSubmit)="createTask(CreateTaskForm.value)" [formGroup]="CreateTaskForm">
     <div class="form-group" [ngClass]="displayFieldCss('task')">
       <div class="col-sm-12">
         <input type="text" id="task" class="form-control" formControlName="task">
@@ -23,7 +24,7 @@
         <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="date"></my-date-picker>
       </div>
     </div>
-    <input type="submit" value="Send" />
+    <button class="btn btn-primary" [disabled]="!CreateTaskForm.valid" type="submit">Submit</button>
     <p><a [routerLink]="['/login']">Logout</a></p>
   </form>
 </div>

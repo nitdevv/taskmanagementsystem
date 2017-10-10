@@ -19,18 +19,24 @@ export class RegisterService {
     let options = new RequestOptions({ headers: headers });
     return this._http.post(this.posts_Url, JSON.stringify(user), options).map(res => res.json())
   }
-
   addTask(user) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
     let access_token = localStorage.getItem('access_token');
     console.log(access_token);
-    headers.append("Authorization", access_token);
-    // return this._http.post('http://192.168.1.5:6001/add_task', JSON.stringify(user), { headers: headers })
+    headers.append("access_token", access_token);
     return this._http.post('http://5.9.144.226:6001/add_task', JSON.stringify(user), { headers: headers })
       .map(res => res.json());
   }
 
+  view() {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.get('http://5.9.144.226:6001/view_all_task', { headers: headers })
+      .map((res: any) => {
+        console.log(res)
+        return res.json();
+      })
+  }
 
 }

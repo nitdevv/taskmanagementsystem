@@ -15,9 +15,8 @@ import { LoginService } from '../app/service/login.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HomeComponent } from '../app/home/home.component';
 import { TaskComponent } from '../app/taskpage/task.component';
-
-
-
+import { ViewService } from '../app/view/view.service';
+import { ViewComponent } from '../app/view/view.component';
 
 
 @NgModule({
@@ -28,6 +27,7 @@ import { TaskComponent } from '../app/taskpage/task.component';
     FieldErrorDisplayComponent,
     HomeComponent,
     TaskComponent,
+    ViewComponent
 
   ],
   imports: [
@@ -43,6 +43,7 @@ import { TaskComponent } from '../app/taskpage/task.component';
   providers: [
     RegisterService,
     LoginService,
+    ViewService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
