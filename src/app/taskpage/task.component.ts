@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegisterService } from '../service/register.service';
-
 import { IMyDpOptions } from 'mydatepicker';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
+import { RegisterService } from '../service/register.service';
+// import { ViewService } from '../view/view.service';
 import { User } from '../user';
 
 @Component({
@@ -14,15 +14,10 @@ import { User } from '../user';
 
 })
 export class TaskComponent implements OnInit {
-  public myDatePickerOption: IMyDpOptions = {
-    dateFormat: 'yyyy.mm.dd'
-  }
+
   CreateTaskForm: FormGroup;
   error: any;
-  // user: User[];
   title: string;
-  // ndate: any;
-
 
   constructor(private RegisterService: RegisterService,
     private _formBuilder: FormBuilder,
@@ -38,7 +33,9 @@ export class TaskComponent implements OnInit {
   createTask() {
     if (this.CreateTaskForm.valid) {
       console.log("TaskComponent");
-      console.log(this.CreateTaskForm.value);
+      console.log(this.CreateTaskForm.value.date.jsdate);
+      this.CreateTaskForm.value.date = this.CreateTaskForm.value.date.jsdate;
+      console.log("date", this.CreateTaskForm.value)
       this.RegisterService.addTask(this.CreateTaskForm.value)
         .subscribe(data => {
           if (data.error == 0) {
@@ -71,9 +68,6 @@ export class TaskComponent implements OnInit {
       }
     })
   }
-  // setDate(): void {
-  //   let date = new Date();
-  //   this.CreateTaskForm.patchValue({ myDate: null })
-  //
-  // }
+
+
 }
