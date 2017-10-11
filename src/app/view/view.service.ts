@@ -7,7 +7,11 @@ export class ViewService {
   constructor(
     private RegisterService: RegisterService) { }
   view() {
-    return this.RegisterService.view();
+    return this.RegisterService.viewTask();
+
+  }
+  delete(id: string) {
+    return this.RegisterService.deletetask(id);
 
   }
 }

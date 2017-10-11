@@ -4,7 +4,6 @@ import { IMyDpOptions } from 'mydatepicker';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { RegisterService } from '../service/register.service';
-// import { ViewService } from '../view/view.service';
 import { User } from '../user';
 
 @Component({

@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -8,6 +7,7 @@ import { User } from '../user'
 
 @Injectable()
 export class RegisterService {
+  user_id: string;
   token: string;
   posts_Url: string = 'http://5.9.144.226:6001/register';
   constructor(public _http: Http) {
@@ -29,15 +29,31 @@ export class RegisterService {
       .map(res => res.json());
   }
 
-  view() {
+  viewTask() {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('http://5.9.144.226:6001/view_all_task', { headers: headers })
+    let access_token = localStorage.getItem('access_token');
+    console.log(localStorage.getItem('access_token'));
+    headers.append('access_token', access_token);
+    let body = {};
+    return this._http.post(`http://5.9.144.226:6001/view_all_task`, body, { headers: headers })
       .map((res: any) => {
-        console.log("yoooo")
+        return res.json();
+      });
+  }
+  deletetask(user_id: string) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let access_token = localStorage.getItem('access_token');
+    console.log(localStorage.getItem('access_token'));
+    headers.append('access_token', access_token);
+    headers.append('user_id', user_id);
+    let body = {};
+    return this._http.post('http://5.9.144.226:6001/delete/', body, { headers: headers })
+      .map((res: any) => {
+        console.log("delete")
         console.log(res)
         return res.json();
-      })
+      });
   }
-
 }
