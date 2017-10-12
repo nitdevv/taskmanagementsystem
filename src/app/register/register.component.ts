@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
   }
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
-      console.log(field);
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
@@ -64,10 +63,7 @@ export class RegisterComponent implements OnInit {
           if (data.error == 1) {
             this.error = data.message;
             alert(this.error);
-
-            console.log("this.error", this.error)
           } else {
-            console.log("scuccess")
             alert('Registration SuccessFull');
             this.router.navigate(['/login']);
           }

@@ -23,7 +23,6 @@ export class RegisterService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let access_token = localStorage.getItem('access_token');
-    console.log(access_token);
     headers.append("access_token", access_token);
     return this._http.post('http://5.9.144.226:6001/add_task', JSON.stringify(user), { headers: headers })
       .map(res => res.json());
@@ -33,7 +32,6 @@ export class RegisterService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let access_token = localStorage.getItem('access_token');
-    console.log(localStorage.getItem('access_token'));
     headers.append('access_token', access_token);
     let body = {};
     return this._http.post(`http://5.9.144.226:6001/view_all_task`, body, { headers: headers })
@@ -45,14 +43,11 @@ export class RegisterService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let access_token = localStorage.getItem('access_token');
-    console.log(localStorage.getItem('access_token'));
     headers.append('access_token', access_token);
     headers.append('user_id', user_id);
     let body = {};
     return this._http.post('http://5.9.144.226:6001/delete/', body, { headers: headers })
       .map((res: any) => {
-        console.log("delete")
-        console.log(res)
         return res.json();
       });
   }

@@ -31,7 +31,6 @@ export class ViewComponent {
   }
   delete(id: string) {
     this._viewService.delete(id).subscribe(data => {
-      console.log(data)
       this.view();
     });
 
