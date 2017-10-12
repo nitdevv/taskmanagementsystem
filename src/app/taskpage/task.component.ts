@@ -31,15 +31,12 @@ export class TaskComponent implements OnInit {
   }
   createTask() {
     if (this.CreateTaskForm.valid) {
-      console.log("TaskComponent");
-      console.log(this.CreateTaskForm.value.date.jsdate);
-      this.CreateTaskForm.value.date = this.CreateTaskForm.value.date.jsdate;
-      console.log("date", this.CreateTaskForm.value)
+      this.CreateTaskForm.value.date = this.CreateTaskForm.value.date.formatted;
       this.RegisterService.addTask(this.CreateTaskForm.value)
         .subscribe(data => {
           if (data.error == 0) {
             alert("Data Entered Successfully");
-            this.router.navigate(['/home'])
+            this.router.navigate(['/home/view'])
           }
         },
         error => { })
