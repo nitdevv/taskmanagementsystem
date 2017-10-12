@@ -1,7 +1,6 @@
-<div *ngFor="let data of data">
-  <div>
-    <li>
-      <label>{{data.task}}</label>
-    </li>
-  </div>
-</div>
+<ul class="heroes" style="margin-left:21%">
+  <li *ngFor=" let datas of data ">
+    <span class="badge ">{{datas.task}}</span> {{datas.date}}
+    <button class="btn btn-danger" style=" margin: -6px 0px 0px 27px ;float: right" (click)="delete(datas._id)">Delete</button>
+  </li>
+</ul>

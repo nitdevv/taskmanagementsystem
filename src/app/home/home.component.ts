@@ -24,5 +24,9 @@ export class HomeComponent {
     this._viewService.view();
     console.log("click")
   }
+  delete(id: string) {
+    this._viewService.delete(id);
+
+  }
 
 }
