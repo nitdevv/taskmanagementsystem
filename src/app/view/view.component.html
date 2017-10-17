@@ -1,10 +1,29 @@
 <div class="heroes" style="margin-left:21%;margin-right: 20%">
   <table class="table ">
     <tbody>
-      <tr *ngFor=" let datas of data ">
-        <td>{{datas.task}} </td>
-        <td>{{datas.date |date:'mediumDate'}}</td>
-        <i class="fa fa-trash-o fa-2x" style="color:red" (click)="delete(datas._id)"></i>
+
+      <tr *ngFor=" let data of data ">
+        <!-- <input type="checkbox" name="" value=""> -->
+        <td>{{data.task}} </td>
+        <td>{{data.date |date:'mediumDate'}}</td>
+        <button (click)="myModal.open()" class="btn btn-link">Edit Title</button>
+        <div class="row">
+          <form class="form-horizontal" [formGroup]="editTitleForm" novalidate>
+            <modal #myModal (onOpen)="editTitle(data._id)">
+              <modal-header>
+                <h4 class="modal-title">Enter New Title</h4>
+              </modal-header>
+              <modal-content>
+                <input *ngIf="editData" class="form-control" type="text" [(ngModel)]="editData.data.task" name="title" formControlName="title" required/>
+              </modal-content>
+              <modal-footer>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button class="btn btn-primary" (click)="myModal.close()">close</button>
+              </modal-footer>
+            </modal>
+          </form>
+        </div>
+        <i class="fa fa-trash-o fa-2x" style="color:red" (click)="delete(data._id)"></i>
       </tr>
     </tbody>
   </table>

@@ -69,7 +69,7 @@ h1{
 .form-style-6{
     margin-left: 47% !important;
     margin-top: 10% !important;
-    font: 95% Arial, Helvetica, sans-serif;
+    font: 145% Arial, Helvetica, sans-serif;
     max-width: 400px;
     margin: 10px auto;
     padding: 16px;
@@ -79,7 +79,7 @@ h1{
 
     background: #009c88;
     padding: 20px 0;
-    font-size: 140%;
+    font-size: 180%;
     font-weight: 300;
     text-align: center;
     color: #fff;
@@ -153,4 +153,17 @@ h1{
 }
 .fa fa-trash-o{
   color: red;
+}
+.control-label{
+  font-size: 15px
+}
+.w3-bar-item{
+    font-size: 15px
+
+}
+.btn-primary{
+      font-size: 1.5em;
+}
+table{
+  font-size: 1.5em;
 }

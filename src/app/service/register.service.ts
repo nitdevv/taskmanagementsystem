@@ -34,7 +34,7 @@ export class RegisterService {
     let access_token = localStorage.getItem('access_token');
     headers.append('access_token', access_token);
     let body = {};
-    return this._http.post(`http://5.9.144.226:6001/view_all_task`, body, { headers: headers })
+    return this._http.get(`http://5.9.144.226:6001/view_all_task`, { headers: headers })
       .map((res: any) => {
         return res.json();
       });
@@ -46,9 +46,22 @@ export class RegisterService {
     headers.append('access_token', access_token);
     headers.append('user_id', user_id);
     let body = {};
-    return this._http.post('http://5.9.144.226:6001/delete/', body, { headers: headers })
+    return this._http.delete('http://5.9.144.226:6001/delete/', { headers: headers })
       .map((res: any) => {
         return res.json();
       });
+  }
+  edittask(user_id: string) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let access_token = localStorage.getItem('access_token');
+    headers.append('access_token', access_token);
+    headers.append('user_id', user_id);
+    let body = {};
+    return this._http.post('http://5.9.144.226:6001/edit_task/', body, { headers: headers })
+      .map((res: any) => {
+        return res.json();
+      });
+
   }
 }

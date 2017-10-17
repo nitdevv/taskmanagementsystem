@@ -28,5 +28,8 @@ export class HomeComponent {
     this._viewService.delete(id);
 
   }
+  edit(id: string) {
+    this._viewService.edit(id);
 
+  }
 }

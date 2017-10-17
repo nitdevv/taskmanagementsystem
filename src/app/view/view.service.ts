@@ -14,4 +14,8 @@ export class ViewService {
     return this.RegisterService.deletetask(id);
 
   }
+  edit(id: string) {
+    return this.RegisterService.edittask(id);
+
+  }
 }

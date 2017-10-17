@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
+import { ModalModule } from 'ng2-modal'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../app/login/login.component'
@@ -37,7 +38,8 @@ import { ViewComponent } from '../app/view/view.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    ModalModule
 
   ],
   providers: [
