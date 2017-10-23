@@ -64,4 +64,19 @@ export class RegisterService {
       });
 
   }
+  checkbox(user_id: string) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let access_token = localStorage.getItem('access_token');
+    headers.append('access_token', access_token);
+    headers.append('user_id', user_id);
+    let body = {};
+    return this._http.get(`http://5.9.144.226:6001/task_status/`, { headers: headers })
+      .map((res: any) => {
+        // console.log(data)
+        return res.json();
+      });
+
+  }
+
 }

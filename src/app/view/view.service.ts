@@ -18,4 +18,8 @@ export class ViewService {
     return this.RegisterService.edittask(id);
 
   }
+  checkboxtask(id: string) {
+    return this.RegisterService.checkbox(id);
+
+  }
 }

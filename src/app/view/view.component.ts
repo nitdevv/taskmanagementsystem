@@ -19,14 +19,15 @@ export class ViewComponent {
   datas: any;
   editData: any;
   editTitleForm: FormGroup;
-
-
+  isDone = false;
+  index: any;
   constructor(
     private _viewService: ViewService,
     private registerService: RegisterService,
-    private _formBuilder: FormBuilder
-  ) {
-  }
+    private _formBuilder: FormBuilder,
+
+  ) { }
+
   ngOnInit() {
     this.view();
 
@@ -36,24 +37,27 @@ export class ViewComponent {
     this.editTitleForm = this._formBuilder.group({
       title: [null, [Validators.required]]
     })
-
+    this.isDone = false;
   }
   view() {
     this._viewService.view().subscribe(data => {
       this.data = data.data
     });
-
   }
   delete(id: string) {
     this._viewService.delete(id).subscribe(data => {
       this.view();
     });
-
   }
   editTitle(id: any) {
     this._viewService.view().subscribe(data => { console.log(this.editData = data) })
+  }
+  checkbox(id: any, task: any, i: any) {
+    this._viewService.checkboxtask(id).subscribe(data => {
 
 
+
+    })
   }
   // changeTitle(id: any, task: any) {
   //   this.registerService.edittask(id, task).subscribe((data) => { })
