@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             alert("Invalid email ,password please try again");
           } else {
             alert('Login SuccessFull');
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home/view'])
 
           }
           console.log(data)

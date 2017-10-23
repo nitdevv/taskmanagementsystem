@@ -3,7 +3,8 @@
     <tbody>
 
       <tr *ngFor=" let data of data ">
-        <!-- <input type="checkbox" name="" value=""> -->
+
+        <input type="checkbox" name="" value="" (click)="checkbox(data._id)">
         <td>{{data.task}} </td>
         <td>{{data.date |date:'mediumDate'}}</td>
         <button (click)="myModal.open()" class="btn btn-link">Edit Title</button>
@@ -11,7 +12,7 @@
           <form class="form-horizontal" [formGroup]="editTitleForm" novalidate>
             <modal #myModal (onOpen)="editTitle(data._id)">
               <modal-header>
-                <h4 class="modal-title">Enter New Title</h4>
+                <h4 class="modal-title" style="margin-right: 88px">Enter New Title</h4>
               </modal-header>
               <modal-content>
                 <input *ngIf="editData" class="form-control" type="text" [(ngModel)]="editData.data.task" name="title" formControlName="title" required/>
